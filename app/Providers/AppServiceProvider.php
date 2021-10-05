@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Src\Tag\Domain\Interfaces\TagRepositoryInterface;
+use Src\Tag\Infrastructure\Repository\EloquentTagRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +15,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            TagRepositoryInterface::class,
+            EloquentTagRepository::class
+        );
     }
 
     /**
